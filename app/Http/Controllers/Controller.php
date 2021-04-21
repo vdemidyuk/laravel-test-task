@@ -2,18 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AppService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    public AppService $appService;
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function ping()
+    public function __construct(AppService $appService)
     {
-        sleep(2);
+        $this->appService = $appService;
+    }
+
+    public function ping(): JsonResponse
+    {
         return response()->json((object)['ping' => 'pong']);
+    }
+
+    public function auth(Request $request): JsonResponse
+    {
+        $this->appService->auth($request);
+        return response()->json((object)[]);
     }
 }

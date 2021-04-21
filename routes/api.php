@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/ping', [Controller::class, 'ping']);
-Route::get('/auth', [Controller::class, 'auth']);
+Route::post('/auth', [Controller::class, 'auth']);

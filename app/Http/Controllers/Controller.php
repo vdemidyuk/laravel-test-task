@@ -10,4 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function ping()
+    {
+        sleep(2);
+        return response()->json((object)['ping' => 'pong']);
+    }
 }

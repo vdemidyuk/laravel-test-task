@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\PingController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/ping', [Controller::class, 'ping']);
-Route::post('/auth', [Controller::class, 'auth']);
+Route::get('/ping', [PingController::class, 'ping']);
+Route::post('/auth', [AuthController::class, 'auth']);
+Route::get('/book/{name}', [BookController::class, 'findAllByName']);

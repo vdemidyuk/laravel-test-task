@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AppService {
 
+    public DataService $dataService;
+
+    public function __construct(DataService $dataService)
+    {
+        $this->dataService = $dataService;
+    }
+
     public function auth(Request $request)
     {
         // it's a hack!
@@ -24,6 +31,11 @@ class AppService {
         }
 
         return Auth::user()->createToken('authToken')->plainTextToken;
+    }
+
+    public function findAllBooksByName(string $name)
+    {
+        return $this->dataService->findAllBooksByName($name);
     }
 
 }

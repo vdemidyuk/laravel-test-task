@@ -21,4 +21,9 @@ class StorageService {
         }
     }
 
+    public function get()
+    {
+        return json_decode(Storage::disk('local')->get(static::DATA_FILE), true);
+    }
+
 }

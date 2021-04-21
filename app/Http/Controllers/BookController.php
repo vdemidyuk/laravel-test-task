@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class BookController extends BaseController
 {
@@ -17,5 +18,26 @@ class BookController extends BaseController
         $books = $this->appService->findAllBooksByName($name);
 
         return response()->json($books);
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        $validate = [
+            'genre' => [
+                'required',
+            ],
+            'author' => [
+                'required',
+            ],
+            'name' => [
+                'required',
+            ],
+        ];
+
+        $request->validate($validate);
+
+        $result = $this->appService->updateBooks($request);
+
+        return response()->json($result);
     }
 }

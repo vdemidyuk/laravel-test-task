@@ -24,3 +24,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/ping', [PingController::class, 'ping']);
 Route::post('/auth', [AuthController::class, 'auth']);
 Route::get('/book/{name}', [BookController::class, 'findAllByName']);
+Route::post('/book', [BookController::class, 'update']);

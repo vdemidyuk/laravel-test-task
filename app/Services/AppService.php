@@ -33,9 +33,15 @@ class AppService {
         return Auth::user()->createToken('authToken')->plainTextToken;
     }
 
-    public function findAllBooksByName(string $name)
+    public function findAllBooksByName(string $name): array
     {
         return $this->dataService->findAllBooksByName($name);
+    }
+
+    public function updateBooks(Request $request): array
+    {
+        $this->dataService->updateBooksByRequest($request);
+        return $this->dataService->get();
     }
 
 }

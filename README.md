@@ -1,1 +1,2 @@
-# laravel-test-task
+- php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+- migrate & seed 
